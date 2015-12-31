@@ -139,6 +139,14 @@ def generate_win(metric):
         upfile.write('route add %s mask %s %s metric %d\n'%(ip,mask,"%gw%",metric))
         downfile.write('route delete %s\n'%(ip))
     
+    upfile.write('route add 10.0.0.0/8 %s'%("%gw%"))
+    upfile.write('route add 172.16.0.0/12 %s'%("%gw%"))
+    upfile.write('route add 192.168.0.0/16 %s'%("%gw%"))
+
+    downfile.write('route delete 10.0.0.0/8 %s'%("%gw%"))
+    downfile.write('route delete 172.16.0.0/12 %s'%("%gw%"))
+    downfile.write('route delete 192.168.0.0/16 %s'%("%gw%"))
+
     upfile.close()
     downfile.close()
     
